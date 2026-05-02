@@ -1,0 +1,48 @@
+# compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Angular CLI cache (v13+)
+.angular/
+
+# dependencies
+/node_modules
+
+# environment files with secrets
+/src/environments/environment.prod.ts
+
+# profiling files
+chrome-profiler-events*.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# VSCode — keep shared settings, ignore personal/local ones
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db

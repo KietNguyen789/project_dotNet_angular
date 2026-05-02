@@ -1,0 +1,29 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h2>Welcome Back</h2>
+
+    <div class="alert error" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="you@example.com" />
+        <span class="hint" *ngIf="f['email'].touched && f['email'].errors?.required">Email is required.</span>
+        <span class="hint" *ngIf="f['email'].touched && f['email'].errors?.email">Enter a valid email.</span>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="••••••••" />
+        <span class="hint" *ngIf="f['password'].touched && f['password'].errors?.required">Password is required.</span>
+        <span class="hint" *ngIf="f['password'].touched && f['password'].errors?.minlength">At least 6 characters.</span>
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Logging in...' : 'Log In' }}
+      </button>
+    </form>
+
+    <p class="switch">Don't have an account? <a routerLink="/register">Sign up</a></p>
+  </div>
+</div>

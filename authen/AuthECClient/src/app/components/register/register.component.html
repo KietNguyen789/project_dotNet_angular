@@ -1,0 +1,37 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h2>Create Account</h2>
+
+    <div class="alert success" *ngIf="successMsg">{{ successMsg }}</div>
+    <div class="alert error" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" formControlName="fullName" placeholder="John Doe" />
+        <span class="hint" *ngIf="f['fullName'].touched && f['fullName'].errors?.required">Full name is required.</span>
+        <span class="hint" *ngIf="f['fullName'].touched && f['fullName'].errors?.minlength">At least 2 characters.</span>
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="you@example.com" />
+        <span class="hint" *ngIf="f['email'].touched && f['email'].errors?.required">Email is required.</span>
+        <span class="hint" *ngIf="f['email'].touched && f['email'].errors?.email">Enter a valid email.</span>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="••••••••" />
+        <span class="hint" *ngIf="f['password'].touched && f['password'].errors?.required">Password is required.</span>
+        <span class="hint" *ngIf="f['password'].touched && f['password'].errors?.minlength">At least 6 characters.</span>
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Registering...' : 'Sign Up' }}
+      </button>
+    </form>
+
+    <p class="switch">Already have an account? <a routerLink="/login">Log in</a></p>
+  </div>
+</div>
