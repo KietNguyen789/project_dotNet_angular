@@ -30,6 +30,8 @@ namespace authen.system.web.Controller
             {
                 "sys_user;Authenticate",
                  "sys_user;sign_up",
+                  "sys_user;getListUse",
+                 
 
             },
             list_controller_action_publicNonLogin = new List<string>()

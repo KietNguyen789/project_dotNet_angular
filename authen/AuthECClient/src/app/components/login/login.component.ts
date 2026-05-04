@@ -29,6 +29,7 @@ export class LoginComponent {
     this.auth.login(this.form.value).subscribe({
       next: (res) => {
         this.loading = false;
+
         this.auth.accessToken = res.token;
         this.router.navigate(['/home']);
       },

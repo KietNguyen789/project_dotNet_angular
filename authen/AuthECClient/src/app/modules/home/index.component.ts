@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
     loading = false;
     errorMsg = '';
 
-    constructor(private router: Router, private auth: AuthService) {}
+    constructor(private router: Router, private auth: AuthService) { }
 
     ngOnInit(): void {
         this.loadUsers();
@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
         this.loading = true;
         this.auth.getListUser().subscribe({
             next: (data) => {
+                debugger
                 this.users = data;
                 this.loading = false;
             },

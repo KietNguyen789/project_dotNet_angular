@@ -25,7 +25,7 @@ using authen.common.Attributes;
 namespace authen.system.web.Controller
 {
 
-    
+
     [ApiController]
     public partial class sys_userController : BaseAuthenticationController
     {
@@ -47,7 +47,6 @@ namespace authen.system.web.Controller
 
 
         [HttpGet]
-        [Authorize]
         [CacheAttribute(100)]
         public async Task<IActionResult> getListUse()
         {
@@ -75,7 +74,7 @@ namespace authen.system.web.Controller
             {
                 return BadRequest(ex.Message);
             }
-         
+
         }
 
 
@@ -90,7 +89,7 @@ namespace authen.system.web.Controller
             {
                 ModelState.AddModelError("password", "Password is required");
             }
-            if(model.email == null || model.email.Trim() == "")
+            if (model.email == null || model.email.Trim() == "")
             {
                 ModelState.AddModelError("username", "Username is required");
             }
@@ -118,7 +117,7 @@ namespace authen.system.web.Controller
             }
 
 
-            var tokenHandler = new JwtSecurityTokenHandler();   
+            var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appsetting.SecretKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -134,8 +133,8 @@ namespace authen.system.web.Controller
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
-         //   HttpContext.Session.Remove("CaptchaCode");
-        
+            //   HttpContext.Session.Remove("CaptchaCode");
+
             // return basic user info and authentication token
             return Ok(new
             {
@@ -180,7 +179,7 @@ namespace authen.system.web.Controller
 
         }
 
-    
+
 
         [HttpGet]
         [Authorize]
@@ -192,5 +191,5 @@ namespace authen.system.web.Controller
 
     }
 
-   
+
 }
