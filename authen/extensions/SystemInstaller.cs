@@ -1,17 +1,15 @@
-using authen.system.web.Controller;
+﻿using authen.system.web.Controller;
 
 namespace authen.extensions
 {
-    public static class SystemExtension
+    public class SystemInstaller
     {
-        public static IServiceCollection addSystemServices(this IServiceCollection services, IConfiguration configuration)
+        public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddAuthorization();
             services.AddControllers()
                 .AddApplicationPart(typeof(sys_userController).Assembly)
                 .AddNewtonsoftJson();
-            return services;
         }
     }
 }

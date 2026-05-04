@@ -10,6 +10,15 @@ export interface RegisterRequest {
   };
 }
 
+export interface UserItem {
+  id: string;
+  username: string;
+  fullName: string;
+  email: string;
+  gender: number;
+  date_of_birth: string;
+}
+
 export interface LoginRequest {
   email: string;
   password: string;

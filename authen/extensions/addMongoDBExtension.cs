@@ -1,6 +1,6 @@
 using authen.common.data.Models;
 using authen.Database.Mongodb.Collection;
-
+using authen.common.Helpers;
 namespace authen.extensions
 {
     public static class addMongoDBExtension

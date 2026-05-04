@@ -18,7 +18,9 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using authen.common.Helpers;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;  
+using System.IdentityModel.Tokens.Jwt;
+using MongoDB.Driver;
+using authen.common.Attributes;
 
 namespace authen.system.web.Controller
 {
@@ -40,6 +42,19 @@ namespace authen.system.web.Controller
             _context = context;
             _appsetting = appsetting.Value;
             _repo = new sys_user_repo(context);
+        }
+
+
+
+        [HttpGet]
+        [Authorize]
+        [CacheAttribute(100)]
+        public async Task<IActionResult> getListUse()
+        {
+            var users = _repo._context.sys_user_col.AsQueryable()
+                .Select(u => new { u.id, u.Username, u.fullName, u.email, u.gender, u.date_of_birth })
+                .ToList();
+            return Ok(users);
         }
 
         [AllowAnonymous]

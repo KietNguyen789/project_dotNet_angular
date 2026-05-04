@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { LoginRequest, RegisterRequest, AuthResponse } from '../models/auth.models';
+import { LoginRequest, RegisterRequest, AuthResponse, UserItem } from '../models/auth.models';
 import { AuthUtils } from './auth.utils';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -24,6 +24,12 @@ export class AuthService {
 
   login(payload: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.base}/Authenticate`, payload);
+  }
+
+  getListUser(): Observable<UserItem[]> {
+    return this.http.get<UserItem[]>(`${this.base}/getListUse`, {
+      headers: { Authorization: `Bearer ${this.accessToken}` }
+    });
   }
 
   check_login(): Observable<boolean> {

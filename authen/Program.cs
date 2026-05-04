@@ -14,6 +14,8 @@ foreach (var controller in SystemListController.list_controller)
 builder.Services.AddSingleton(ListController.list_public);
 
 // ── Service registrations ────────────────────────────────────────────────────
+builder.Services.InstallerServiceInAssembly(builder.Configuration);
+
 builder.Services
     // add System service likes: controller
     .addSystemServices(builder.Configuration)
@@ -40,5 +42,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller}.ctr/{action=Index}/{id?}");
 app.MapFallbackToFile("index.html");
+
+
 
 app.Run();
