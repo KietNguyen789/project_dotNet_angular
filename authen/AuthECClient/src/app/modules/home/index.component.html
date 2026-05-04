@@ -1,34 +1,45 @@
-<div class="auth-wrapper">
-  <div class="auth-card" style="max-width: 900px;">
-    <h2>User List</h2>
+<div class="page-wrapper">
+  <div class="page-card">
+    <div class="page-header">
+      <h2>User List</h2>
+      <span class="badge" *ngIf="!loading">{{ users.length }} users</span>
+    </div>
 
     <div class="alert error" *ngIf="errorMsg">{{ errorMsg }}</div>
 
-    <p *ngIf="loading">Loading...</p>
+    <div class="loading-row" *ngIf="loading">
+      <span class="spinner"></span> Loading...
+    </div>
 
-    <table *ngIf="!loading && users.length > 0" style="width:100%; border-collapse: collapse;">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Full Name</th>
-          <th>Email</th>
-          <th>Username</th>
-          <th>Gender</th>
-          <th>Date of Birth</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ user.fullName }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.gender === 1 ? 'Male' : 'Female' }}</td>
-          <td>{{ '' }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-wrapper" *ngIf="!loading && users.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; let i = index">
+            <td class="idx">{{ i + 1 }}</td>
+            <td><strong>{{ user.fullName }}</strong></td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <span class="chip" [class.male]="user.gender === 1" [class.female]="user.gender !== 1">
+                {{ user.gender === 1 ? 'Male' : 'Female' }}
+              </span>
+            </td>
+            <td>{{ user.date_of_birth | date:'dd/MM/yyyy' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <p *ngIf="!loading && users.length === 0 && !errorMsg">No users found.</p>
+    <p class="empty-msg" *ngIf="!loading && users.length === 0 && !errorMsg">No users found.</p>
   </div>
 </div>
