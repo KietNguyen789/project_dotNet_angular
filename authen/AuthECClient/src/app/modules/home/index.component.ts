@@ -29,8 +29,6 @@ export class HomeComponent implements OnInit {
         this.auth.getListUser().subscribe({
             next: (data) => {
                 this.users = data;
-
-
                 this.loading = false;
             },
             error: (err) => {
