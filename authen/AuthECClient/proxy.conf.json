@@ -1,7 +1,0 @@
-{
-  "/sys_user.ctr": {
-    "target": "https://localhost:5001",
-    "secure": false,
-    "changeOrigin": true
-  }
-}

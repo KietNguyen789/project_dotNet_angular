@@ -13,7 +13,7 @@
             "name": "C#: authen [Default Configuration]",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}\\authen\\authen.csproj"
+            "projectPath": "${workspaceFolder}\\authen\\authen.csproj",
         }
     ]
 }

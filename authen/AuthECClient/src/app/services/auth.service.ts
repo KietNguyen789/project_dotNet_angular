@@ -27,11 +27,6 @@ export class AuthService {
   }
 
   getListUser(): Observable<UserItem[]> {
-    debugger
-    // return this.http.get<UserItem[]>(`${this.base}/getListUse`, {
-    //   headers: { Authorization: `Bearer ${this.accessToken}` }
-    // });
-
     return this.http.get<UserItem[]>(`${this.base}/getListUse`);
   }
 
