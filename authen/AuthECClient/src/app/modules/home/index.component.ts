@@ -35,9 +35,9 @@ export class HomeComponent implements OnInit {
                 debugger; // hits when request fails — check err in DevTools
                 this.errorMsg = err?.error?.message || 'Failed to load users.';
                 this.loading = false;
-                if (err.status === 401) {
-                    this.router.navigate(['/login']);
-                }
+                // if (err.status === 401) {
+                //     this.router.navigate(['/login']);
+                // }
             }
         });
     }

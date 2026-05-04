@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { LoginRequest, RegisterRequest, AuthResponse, UserItem } from '../models/auth.models';
 import { AuthUtils } from './auth.utils';
+import { switchMap } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private base = `sys_user.ctr`;
@@ -23,14 +24,24 @@ export class AuthService {
   }
 
   login(payload: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.base}/Authenticate`, payload);
+    return this.http.post<AuthResponse>(`${this.base}/Authenticate`, payload).pipe(
+      switchMap((res: any) => {
+        this._authenticated = true
+        return of(res);
+      })
+    );
   }
 
   getListUser(): Observable<UserItem[]> {
     return this.http.get<UserItem[]>(`${this.base}/getListUse`);
   }
 
-  check_login(): Observable<boolean> {
+  deleteToken(): Observable<void> {
+    localStorage.removeItem("accessToken");
+    return of(void 0);
+  }
+
+  isLogin(): Observable<boolean> {
     // Check if the user is logged in
     if (this._authenticated) {
       return of(true);

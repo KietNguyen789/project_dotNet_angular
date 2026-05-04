@@ -47,6 +47,7 @@ namespace authen.system.web.Controller
 
 
         [HttpGet]
+        [Authorize]
         [CacheAttribute(100)]
         public async Task<IActionResult> getListUse()
         {
@@ -118,7 +119,7 @@ namespace authen.system.web.Controller
 
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appsetting.SecretKey);
+            var key = Encoding.UTF8.GetBytes(_appsetting.SecretKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -128,6 +129,8 @@ namespace authen.system.web.Controller
                     new Claim(ClaimTypes.Gender, user.gender.ToString()),
                     new Claim(ClaimTypes.DateOfBirth,user.date_of_birth.ToString())
                 }),
+                Issuer = _appsetting.Issuer,
+                Audience = _appsetting.Audience,
                 Expires = DateTime.Now.AddMinutes(settings.GetValue<double>("ExpireMinutes")),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
